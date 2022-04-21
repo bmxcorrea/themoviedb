@@ -5,7 +5,7 @@ class ImageBackgroundWithTitle extends StatelessWidget {
   const ImageBackgroundWithTitle({
     Key? key,
     required this.imageUrl,
-    required this.title,
+    this.title,
     this.subtitle,
     this.fontSize = 40,
     this.height = double.infinity,
@@ -16,7 +16,7 @@ class ImageBackgroundWithTitle extends StatelessWidget {
   }) : super(key: key);
 
   final String imageUrl;
-  final String title;
+  final String? title;
   final String? subtitle;
   final double fontSize;
   final double height;
@@ -62,17 +62,20 @@ class ImageBackgroundWithTitle extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: fontSizeTitle,
+                    if (title != null)
+                      Text(
+                        title as String,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: fontSizeTitle,
+                        ),
                       ),
-                    ),
                     if (subtitle != null) ...[
                       const SizedBox(height: 20),
                       Text(
                         subtitle as String,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: fontSize - (fontSize * .6),

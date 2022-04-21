@@ -41,7 +41,6 @@ class MovieView extends StatelessWidget {
                         final movie = _.movies[index];
                         return ImageBackgroundWithTitle(
                           imageUrl: movie.backdropPath,
-                          title: movie.title,
                           height: 200,
                           fontSize: 32,
                           borderRadius: 10,

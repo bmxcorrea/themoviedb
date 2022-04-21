@@ -22,7 +22,7 @@ class Movie {
     final overview = json['overview'];
     final backdropPath = BASEURL_IMAGE + json['backdrop_path'];
     final posterPath = BASEURL_IMAGE + json['poster_path'];
-    final voteAverage = json['vote_average'];
+    final voteAverage = json['vote_average'].toDouble();
     final releaseDate = json['release_date'];
 
     return Movie(

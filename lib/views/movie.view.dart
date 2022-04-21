@@ -15,40 +15,44 @@ class MovieView extends StatelessWidget {
       builder: (_) {
         return Scaffold(
           body: _.isLoading
-              ? Center(
-                  child: Image.asset('spinner.gif'),
+              ? const Center(
+                  child: Text('Loading...'),
                 )
-              : ImageBackgroundWithTitle(
-                  imageUrl: _.currentMovie?.posterPath as String,
-                  title: _.currentMovie?.title as String,
-                  subtitle: _.currentMovie?.overview as String,
-                  callToAction: CallToAction('Show more info', () {
-                    _.goToDetail();
-                  }),
-                  content: Container(
-                    height: 200,
-                    color: Colors.transparent,
-                    child: Swiper(
-                      itemCount: _.movies.length,
-                      viewportFraction: 0.8,
-                      scale: 0.8,
-                      pagination: const SwiperPagination(),
-                      control: const SwiperControl(size: 10),
-                      onIndexChanged: (index) {
-                        _.setCurrentMovie(index);
-                      },
-                      itemBuilder: (context, index) {
-                        final movie = _.movies[index];
-                        return ImageBackgroundWithTitle(
-                          imageUrl: movie.backdropPath,
-                          height: 200,
-                          fontSize: 32,
-                          borderRadius: 10,
-                        );
-                      },
+              : _.currentMovie == null
+                  ? const Center(
+                      child: Text('No data...'),
+                    )
+                  : ImageBackgroundWithTitle(
+                      imageUrl: _.currentMovie?.posterPath as String,
+                      title: _.currentMovie?.title as String,
+                      subtitle: _.currentMovie?.overview as String,
+                      callToAction: CallToAction('Details', () {
+                        _.goToDetail();
+                      }),
+                      content: Container(
+                        height: 200,
+                        color: Colors.transparent,
+                        child: Swiper(
+                          itemCount: _.movies.length,
+                          viewportFraction: 0.8,
+                          scale: 0.8,
+                          pagination: const SwiperPagination(),
+                          control: const SwiperControl(size: 10),
+                          onIndexChanged: (index) {
+                            _.setCurrentMovie(index);
+                          },
+                          itemBuilder: (context, index) {
+                            final movie = _.movies[index];
+                            return ImageBackgroundWithTitle(
+                              imageUrl: movie.backdropPath,
+                              height: 200,
+                              fontSize: 32,
+                              borderRadius: 10,
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
         );
       },
     );

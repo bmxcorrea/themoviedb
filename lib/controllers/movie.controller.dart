@@ -17,7 +17,7 @@ class MovieController extends GetxController {
 
   loadMovies() async {
     movies = await getMovies(page);
-    currentMovie = movies.first;
+    currentMovie = movies.isNotEmpty ? movies.first : null;
     isLoading = false;
     update();
   }

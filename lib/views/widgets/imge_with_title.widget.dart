@@ -86,10 +86,11 @@ class ImageBackgroundWithTitle extends StatelessWidget {
                     if (callToAction != null) ...[
                       const SizedBox(height: 20),
                       MaterialButton(
-                        color: Colors.white.withOpacity(0.1),
+                        elevation: 0,
+                        color: Colors.white.withOpacity(0.2),
                         padding: const EdgeInsets.symmetric(
-                          vertical: 18,
-                          horizontal: 36,
+                          vertical: 15,
+                          horizontal: 30,
                         ),
                         onPressed: callToAction?.action,
                         child: Text(

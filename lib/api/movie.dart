@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:themoviedb/api/index.dart';
 import 'package:themoviedb/models/movie.dart';
@@ -16,6 +17,8 @@ Future<List<Movie>> getMovies(int page) async {
       final results = json["results"] as List;
       return results.map<Movie>((x) => Movie.fromJson(x)).toList();
     }
-  } catch (_) {}
+  } catch (_) {
+    Get.log(_.toString(), isError: true);
+  }
   return [];
 }

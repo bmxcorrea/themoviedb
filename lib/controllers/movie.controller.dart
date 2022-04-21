@@ -6,6 +6,7 @@ class MovieController extends GetxController {
   bool isLoading = true;
   int page = 1;
   List<Movie> movies = [];
+  Movie? currentMovie;
 
   @override
   void onInit() {
@@ -15,7 +16,13 @@ class MovieController extends GetxController {
 
   loadMovies() async {
     movies = await getMovies(page);
+    currentMovie = movies.first;
     isLoading = false;
+    update();
+  }
+
+  setCurrentMovie(int index) {
+    currentMovie = movies[index];
     update();
   }
 }

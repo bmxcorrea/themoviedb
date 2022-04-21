@@ -22,7 +22,9 @@ class MovieView extends StatelessWidget {
                   imageUrl: _.currentMovie?.posterPath as String,
                   title: _.currentMovie?.title as String,
                   subtitle: _.currentMovie?.overview as String,
-                  callToAction: CallToAction('Show more info', () {}),
+                  callToAction: CallToAction('Show more info', () {
+                    _.goToDetail();
+                  }),
                   content: Container(
                     height: 200,
                     color: Colors.transparent,

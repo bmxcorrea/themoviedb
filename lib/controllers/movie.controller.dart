@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:themoviedb/api/movie.dart';
 import 'package:themoviedb/models/movie.dart';
+import 'package:themoviedb/views/movie_detail.view.dart';
 
 class MovieController extends GetxController {
   bool isLoading = true;
@@ -24,5 +25,11 @@ class MovieController extends GetxController {
   setCurrentMovie(int index) {
     currentMovie = movies[index];
     update();
+  }
+
+  goToDetail() {
+    if (currentMovie != null) {
+      Get.to(() => MovieDetailView(movie: currentMovie as Movie));
+    }
   }
 }
